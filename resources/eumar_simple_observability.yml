@@ -1,0 +1,21 @@
+# The main job for eumar_basic_bundle.
+resources:
+  jobs:
+    eumar_simple_observability:
+      name: eumar_simple_observability
+
+      tasks:
+        - task_key: notebook_task_model_2_type_1
+          notebook_task:
+            notebook_path: ../src/simple_observability.ipynb
+            base_parameters:
+              destination_table: "eumar_tests.eumar_default.simple_observability"
+              filter: "^eumar_tests\\."  
+    
+      # Serverless Workflows
+      environments:
+        - environment_key: Default
+          spec:
+            client: "1"
+            dependencies:
+              - workflows_authoring_toolkit==0.0.1    
